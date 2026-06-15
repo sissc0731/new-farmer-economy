@@ -1,14 +1,33 @@
 const fs=require('fs'),path=require('path'),today=new Date().toISOString().slice(0,10),slug=today;
-const feed=JSON.parse(fs.readFileSync(path.join(__dirname,'..','feed.json'),'utf8'));
-if(feed.posts.find(p=>p.slug===slug)){console.log('Exists');process.exit(0)}
-const articles=[
-{title:'一个90后回乡种地的真实记录：第一年亏了8万，第二年赚了20万',tag:'真实故事',intro:'越来越多年轻人从城市回流农村。不是逃离，是找到了新的机会——用直播卖农产品、用电商打开市场、用短视频记录乡村生活。但回乡不是田园牧歌，第一年是最难熬的。',sections:[{title:'🌾 第一年踩的坑',body:'最大的坑是\"想当然\"。以为种高品质的东西自然有人买——结果种出来发现没人知道你是谁。8万块亏在：种子买太贵、不用化肥导致产量过低、没有提前找销路。最惨的是草莓熟了卖不出去烂在地里，那是最崩溃的时刻。'},{title:'📱 转机：开始做短视频',body:'一开始只是记录日常——种地、做饭、修房子。没想到一个拍\"早上六点起来喂鸡\"的视频爆了，100万播放量，涌入一大批对农村生活好奇的粉丝。顺势开了直播间，第一天就卖出了所有滞销的草莓。关键是真实——镜头不美化，泥土就是泥土。'},{title:'💰 第二年怎么赚到20万的',body:'不是靠卖菜赚钱。收入来源：直播打赏30%、农产品带货40%、视频广告分成20%、帮村里其他人代卖10%。产品从自己种的扩展到全村的蜂蜜、腊肉、土鸡蛋。一个人富不算富，带着整村一起做才有规模。今年开了拼多多店，不再只是快手和抖音了。'},{title:'💡 给想回乡的人的建议',body:'不要裸辞回乡！先在周末或假期回家试水，用业余时间做短视频积累粉丝。有个5-10万粉丝再说全职的事。不要一上来就投大钱搞种植养殖——先做带货赚到第一桶金，再考虑自己做生产。农村机会确实多但和城里是完全不同的玩法，需要重新学习。'}]},
-{title:'新手怎么用抖音/快手卖农产品？从注册到出单的全流程',tag:'电商教程',intro:'不需要漂亮脸蛋、不需要专业设备、不需要花里胡哨的运营技巧。农产品直播的核心只有一个字——真。真实的产地、真实的种植过程、真实的人。',sections:[{title:'📱 账号从零开始',body:'名字要直接——\"XX村小张\"比\"绿色田园生活\"好一百倍。简介写清楚你是哪里人、卖什么、有什么特色。头像是你在田里的真实照片。前10条视频不要卖东西——就拍日常：地里什么熟了、怎么采摘的、你家怎么做饭的。观众先认识你，才会信任你的产品。'},{title:'🎬 拍摄用手机就够了',body:'不需要专业相机和剪辑技术。一个手机+一个三脚架就够。拍摄内容：商品展示（地里摘下来直接给你看品质）、生产环境（全景扫一圈让观众看到种植环境）、打包过程（真实地包装发货）。视频不要剪辑太精致——太精致了像广告，观众会跳过去。粗糙但真实更好卖。'},{title:'💰 定价和物流',body:'农产品定价不能太低——太低你自己亏，观众也会怀疑品质。定价公式：成本价×1.5-2倍。物流是大头——和快递谈到一件多少钱（量大可以谈到3-5元全国包邮）。包装要舍得花成本，坏掉了不仅赔钱还掉粉。建议前10单手动处理熟悉流程，再开小店上架链接。'},{title:'📈 什么时候开播',body:'晚上7-10点是黄金时段。但农产品直播最好的时间是——你真的在干活的时候。边摘果子边播、边打包边播、边做饭边播。\"干活直播\"比\"坐着聊天直播\"有内容得多。观众看你满头大汗地干活，下单的时候不会觉得你在骗钱。真诚是最好的带货方式。'}]},
-{title:'不用回农村也能做农业电商：城市人的农产品副业指南',tag:'副业机会',intro:'你对农村生活没兴趣，但想做农业相关的副业？不需要你自己种地养鸡——帮农村的好产品找到城市里愿意多花钱的人，这件事本身就是价值。',sections:[{title:'🔗 做农产品供应链',body:'最简单的模式：去周边的农村找真正好的产品——不是规模化农场，是小农户种的走地鸡、散养鸡蛋、应季水果。你负责拍照、写文案、做线上销售、处理客服和售后。农户负责生产发货。你赚的是信息差和品牌溢价。一个靠谱的农户+一个懂线上的你=一个小型电商。'},{title:'📦 做农产品精选',body:'不是什么都卖——选一个品类做精。比如只卖蜂蜜：从全国各地找好蜜源，每个季度切换产地。或者只卖干货：香菇木耳黄花菜，找最好的产区。单品类的优势：你很快会成为这个品类的专家，客户有需求第一个想到你。不需要多，每天出5-10单就是很好的副业收入。'},{title:'✍️ 做农业内容',body:'不卖货，做内容。拍农村纪录片、写农产品科普、做价格对比分析。农业领域的内容创作者非常稀缺，一篇高质量的文章或一个爆款视频带来的广告分成不低。而且一旦你在这个领域建立了专业度，品牌合作和咨询单子会主动找上门来。'}]},
-{title:'农村电商物流怎么搞定？和快递谈合作的实战技巧',tag:'实战技巧',intro:'农产品电商最大的瓶颈不是产品，是物流——运费太贵吃光利润、配送太慢东西坏了、包装不好路上烂了。搞定物流，农业电商就成功了一半。',sections:[{title:'📦 选快递的技巧',body:'不要只用一家快递。小件选通达系（韵达中通圆通）最便宜。大件选德邦或邮政。时效要求高的选顺丰（但成本高）。谈合作时准备好数据：月发件量、主要发往哪些地区、包裹平均重量。量少（日发<10件）用菜鸟裹裹商家版最省事，比零售价便宜30%。'},{title:'🧊 冷链和保鲜',body:'生鲜产品最怕路上坏掉。夏天发货必须在包装里放冰袋+泡沫箱，冬天泡沫箱就够了。成本增加3-5元但能降低90%的售后问题。新手最常犯的错：为了省包装费路上坏了又赔钱又掉粉。初期少赚点都不要紧，好评比利润重要。'},{title:'🗺 偏远地区和交通不便怎么办',body:'提前和买家沟通时效——新疆西藏可能要走一周，下单前说清楚。邮政覆盖所有偏远地区，价格便宜但速度慢。生鲜产品不要发偏远地区——坏了你赔不起。先在省内做，省内快递便宜又快，口碑做起来再慢慢扩区域。'}]},
+const fp=path.join(__dirname,'..','feed.json');
+const feed=JSON.parse(fs.readFileSync(fp,'utf8'));
+if(!feed.posts)feed.posts=[];
+if(feed.posts.find(p=>p.slug===slug)){console.log('Already exists');process.exit(0)}
+
+// Content pools - 8 groups cycling through dates
+const pools=[
+[{t:'效率翻倍！这3个小技巧让你的工作流更顺畅',tag:'效率技巧',d:'减少切换、批处理、自动化——3个简单技巧立刻提升效率'}],
+[{t:'2026年必备的免费工具推荐',tag:'工具推荐',d:'精心挑选的实用免费工具，日常办公和创作都能用上'}],
+[{t:'为什么你总觉得时间不够用？',tag:'时间管理',d:'不是你不够努力，而是方法需要调整。重新规划你的时间分配'}],
+[{t:'工作学习两不误的小窍门',tag:'学习方法',d:'高效人士都在用的学习方法，每天只需投入少量时间'}],
+[{t:'比勤奋更重要的是方法',tag:'思维方式',d:'换个角度思考问题，可能会发现之前困扰你的事其实很简单'}],
+[{t:'减少决策疲劳的日常习惯',tag:'习惯养成',d:'每天做太多小决定会消耗精力，建立习惯让大脑自动运行'}],
+[{t:'让生活更有条理的整理术',tag:'生活技巧',d:'整理不只是打扫房间，更是整理思绪和提升幸福感的方式'}],
+[{t:'数字时代如何保持专注',tag:'专注力',d:'手机和社交媒体在偷走你的注意力，教你几招夺回主动权'}],
 ];
-const idx=(new Date().getDate()-1)%articles.length,a=articles[idx];
-feed.posts.unshift({slug,date:today,title:a.title,tag:a.tag,intro:a.intro,sections:a.sections});
-feed.updated=today;fs.writeFileSync(path.join(__dirname,'..','feed.json'),JSON.stringify(feed,null,2));
-const html=`<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>${a.title} - 新农人</title><style>*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}:root{--bg:#fafafa;--card:#fff;--text:#1a1a2e;--t2:#555;--accent:#65a30d;--border:#e5e7eb;--r:12px}body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans SC",sans-serif;background:var(--bg);color:var(--text);line-height:1.9;font-size:16px}.container{max-width:750px;margin:0 auto;padding:0 20px}header{background:linear-gradient(135deg,#65a30d,#84cc16);color:#fff;padding:36px 0;margin-bottom:24px}header a{color:rgba(255,255,255,.85);text-decoration:none;font-size:.9rem}header h1{font-size:1.5rem;margin-top:8px;line-height:1.4}.post{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:32px}.post .intro{font-size:1rem;color:var(--t2);margin-bottom:28px;padding-bottom:20px;border-bottom:1px solid var(--border);line-height:1.8}.section{margin-bottom:24px}.section h3{font-size:1.05rem;margin-bottom:6px;color:var(--accent)}.section p{color:var(--t2);font-size:.92rem;line-height:1.9}footer{text-align:center;padding:24px;color:#999;font-size:.75rem}@media(max-width:600px){.post{padding:18px}}</style></head><body><header><div class="container"><a href="../index.html">← 首页</a><h1>${a.title}</h1></div></header><main class="container"><article class="post"><p class="intro">${a.intro}</p>${a.sections.map(s=>`<div class="section"><h3>${s.title}</h3><p>${s.body}</p></div>`).join('')}</article></main><footer><p>🌾 新农人经济 · 每日更新</p></footer></body></html>`;
-fs.writeFileSync(path.join(__dirname,'..','posts',slug+'.html'),html);console.log('OK');
+
+const idx=(new Date().getDate()-1)%pools.length;
+const pool=pools[idx];
+const titles=['每日分享 | '+today,'实用技巧 | '+today,'效率提升 | '+today,'好物推荐 | '+today];
+const title=titles[new Date().getDate()%titles.length];
+
+feed.posts.unshift({slug,date:today,title:title,items:pool});
+feed.updated=today;
+fs.writeFileSync(fp,JSON.stringify(feed,null,2));
+
+// Create post HTML
+const dir=path.join(__dirname,'..','posts');
+if(!fs.existsSync(dir))fs.mkdirSync(dir,{recursive:true});
+const h=`<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>${title}</title><meta name="description" content="${pool.map(i=>i.t).join('、')}"><style>body{font:16px -apple-system,sans-serif;background:#fafafa;color:#1a1a2e;line-height:1.8;margin:0;padding:16px}.c{max-width:700px;margin:0 auto}article{background:#fff;padding:24px;border-radius:12px;box-shadow:0 1px 3px rgba(0,0,0,.05)}h1{font-size:1.3rem;margin:0 0 4px}.date{font-size:.8rem;color:#666;margin-bottom:20px}.item{margin-bottom:18px;padding-bottom:14px;border-bottom:1px solid #eee}.item h2{font-size:1rem;margin:0 0 4px}.item p{font-size:.88rem;color:#555}.tag{display:inline-block;background:#eff6ff;color:#2563eb;font-size:.68rem;padding:2px 8px;border-radius:10px;margin-left:6px}footer{text-align:center;padding:20px;color:#999;font-size:.72rem}</style></head><body><div class="c"><article><h1>${title}</h1><p class="date">📅 ${today}</p>${pool.map(i=>'<div class="item"><h2>'+i.t+' <span class="tag">'+i.tag+'</span></h2><p>'+i.d+'</p></div>').join('')}</article></div><footer>每日自动更新</footer></body></html>`;
+fs.writeFileSync(path.join(dir,slug+'.html'),h);
+console.log('Generated:',title);
